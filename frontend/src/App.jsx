@@ -26,8 +26,7 @@ ChartJS.register(
 
 function App() {
   const data = useSensorData();
-  const { tempData, heartbeatData, tempOptions, heartbeatOptions } =
-    useSensorCharts();
+  const { tempData, heartbeatData, tempOptions, heartbeatOptions } = useSensorCharts();
   const currentDate = new Date().toLocaleDateString();
   const currentTime = new Date().toLocaleTimeString();
   const metrics = data

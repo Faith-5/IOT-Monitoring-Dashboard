@@ -4,7 +4,6 @@ import { io } from "socket.io-client";
 const socket = io(import.meta.env.VITE_API_URL);
 
 export default function useSensorCharts() {
-  const [data, setData] = useState(null);
   const [tempData, setTempData] = useState({
     labels: [],
     datasets: [
@@ -28,39 +27,41 @@ export default function useSensorCharts() {
       },
     ],
   });
-
   useEffect(() => {
-    socket.on("iot-data", (packet) => {
-      setData(packet);
+    socket.on("sensorUpdate", (packet) => {
+      console.log("📡 Received packet:", packet);
+
       const time = new Date().toLocaleTimeString();
 
-      // update temp chart
       setTempData((prev) => ({
         ...prev,
         labels: [...prev.labels, time].slice(-10),
         datasets: [
           {
             ...prev.datasets[0],
-            data: [...prev.datasets[0].data, Number(data.temperature)].slice(-10),
+            data: [...prev.datasets[0].data, Number(packet.temperature)].slice(
+              -10
+            ),
           },
         ],
       }));
 
-      // update heartbeat chart
       setHeartbeatData((prev) => ({
         ...prev,
         labels: [...prev.labels, time].slice(-10),
         datasets: [
           {
             ...prev.datasets[0],
-            data: [...prev.datasets[0].data, Number(data.heartbeat)].slice(-10),
+            data: [...prev.datasets[0].data, Number(packet.heartbeat)].slice(
+              -10
+            ),
           },
         ],
       }));
     });
 
     return () => {
-      socket.off("iot-data");
+      socket.off("sensorUpdate");
     };
   }, []);
 
