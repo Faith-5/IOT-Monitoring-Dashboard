@@ -1,3 +1,6 @@
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { useLiveLocation } from "./hooks/useLiveLocation";
 import "./App.css";
 import useSensorData from "./hooks/useSensorHook";
 import useSensorCharts from "./hooks/useSensorCharts";
@@ -26,6 +29,7 @@ ChartJS.register(
 
 function App() {
   const data = useSensorData();
+  const { lat, lng, place } = useLiveLocation();
   const { tempData, heartbeatData, tempOptions, heartbeatOptions } = useSensorCharts();
   const currentDate = new Date().toLocaleDateString();
   const currentTime = new Date().toLocaleTimeString();
@@ -94,7 +98,46 @@ function App() {
           <Line data={heartbeatData} options={heartbeatOptions} />
         </div>
       </div>
-    </div>
+      <div className="p-4 space-y-4">
+        <h1 className="text-2xl md:text-3xl font-bold text-center text-blue-600">Location Tracker</h1>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="bg-white rounded-lg shadow hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+            <div className="p-4 text-center">
+              <h2 className="text-lg font-bold text-gray-700 mb-2">Latitude</h2>
+              <p className="text-lg font-medium text-blue-600">{lat}</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+            <div className="p-4 text-center">
+              <h2 className="text-lg font-bold text-gray-700 mb-2">Longitude</h2>
+              <p className="text-lg font-medium text-blue-600">{lng}</p>
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 md:col-span-3">
+            <div className="p-4 text-center">
+              <h2 className="text-lg font-bold text-gray-700 mb-2">Place</h2>
+              <p className="text-md font-medium text-blue-600">{place}</p>
+            </div>
+          </div>
+        </div>
+
+
+        <MapContainer
+          center={[lat, lng]}
+          zoom={13}
+          style={{ height: "400px", width: "100%" }}
+          key={`${lat}-${lng}`} // re-render when new location comes in
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <Marker position={[lat, lng]}>
+            <Popup>{place}</Popup>
+          </Marker>
+        </MapContainer>
+      </div>   
+  </div>
   );
 }
 
