@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { io } from "socket.io-client";
 
 const socket = io(import.meta.env.VITE_API_URL);
@@ -27,10 +27,9 @@ export default function useSensorCharts() {
       },
     ],
   });
-  useEffect(() => {
-    socket.on("sensorUpdate", (packet) => {
-      console.log("📡 Received packet:", packet);
 
+  useEffect(() => {
+    const handleSensorUpdate = (packet) => {
       const time = new Date().toLocaleTimeString();
 
       setTempData((prev) => ({
@@ -39,9 +38,10 @@ export default function useSensorCharts() {
         datasets: [
           {
             ...prev.datasets[0],
-            data: [...prev.datasets[0].data, Number(packet.temperature)].slice(
-              -10
-            ),
+            data: [
+              ...prev.datasets[0].data,
+              Number(packet.temperature),
+            ].slice(-10),
           },
         ],
       }));
@@ -52,36 +52,50 @@ export default function useSensorCharts() {
         datasets: [
           {
             ...prev.datasets[0],
-            data: [...prev.datasets[0].data, Number(packet.heartbeat)].slice(
-              -10
-            ),
+            data: [
+              ...prev.datasets[0].data,
+              Number(packet.heartbeat),
+            ].slice(-10),
           },
         ],
       }));
-    });
+    };
+
+    socket.on("sensorUpdate", handleSensorUpdate);
 
     return () => {
-      socket.off("sensorUpdate");
+      socket.off("sensorUpdate", handleSensorUpdate);
     };
   }, []);
 
-  const tempOptions = {
+  // ✅ Stable options (prevents re-render issues)
+  const tempOptions = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
+    animation: false,
     scales: {
-      y: { title: { display: true, text: "Temperature (°C)" } },
-      x: { title: { display: true, text: "Time" } },
+      y: {
+        title: { display: true, text: "Temperature (°C)" },
+      },
+      x: {
+        title: { display: true, text: "Time" },
+      },
     },
-  };
+  }), []);
 
-  const heartbeatOptions = {
+  const heartbeatOptions = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
+    animation: false,
     scales: {
-      y: { title: { display: true, text: "Heartbeat (bpm)" } },
-      x: { title: { display: true, text: "Time" } },
+      y: {
+        title: { display: true, text: "Heartbeat (bpm)" },
+      },
+      x: {
+        title: { display: true, text: "Time" },
+      },
     },
-  };
+  }), []);
 
   return { tempData, heartbeatData, tempOptions, heartbeatOptions };
 }

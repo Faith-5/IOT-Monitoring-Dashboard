@@ -1,6 +1,8 @@
-// LoginPage.jsx
 import { useState } from "react";
-import { FaMicrochip, FaSignInAlt } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
+
+import bgImage from "./static/image1.jpg"; // flag + soldier
+import logo from "./static/image3.jpg"; // military logo
 
 function LoginPage({ onLogin }) {
   const [id, setId] = useState("");
@@ -13,42 +15,49 @@ function LoginPage({ onLogin }) {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-900 via-blue-600 to-blue-400">
-      {/* Background overlay with animated circles */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute w-64 h-64 bg-white/10 rounded-full blur-3xl top-10 left-10 animate-pulse"></div>
-        <div className="absolute w-72 h-72 bg-blue-300/20 rounded-full blur-3xl bottom-10 right-10 animate-ping"></div>
-      </div>
+    <div
+      className="flex items-center justify-center min-h-screen bg-cover bg-center relative"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/70"></div>
 
       {/* Login Card */}
-      <div className="relative z-10 bg-white/10 backdrop-blur-lg shadow-xl rounded-2xl p-8 w-[90%] max-w-md border border-white/20 transition-transform transform hover:scale-[1.02]">
+      <div className="relative z-10 bg-white/10 backdrop-blur-md shadow-2xl rounded-2xl p-8 w-[90%] max-w-md border border-white/20">
+        
+        {/* Logo + Title */}
         <div className="flex flex-col items-center mb-6 text-white">
-          <FaMicrochip className="text-5xl mb-3 text-cyan-300 animate-bounce" />
-          <h1 className="text-3xl font-bold tracking-wide">
-            IoT Monitoring Dashboard
+          <img
+            src={logo}
+            alt="Military Logo"
+            className="w-20 h-20 object-contain mb-3"
+          />
+          <h1 className="text-2xl font-bold tracking-wide text-center">
+            Military Monitoring System
           </h1>
-          <p className="text-sm text-blue-100 mt-2">
-            Smart Insights. Real-Time Data.
+          <p className="text-sm text-gray-300 mt-2 text-center">
+            Secure Access Portal
           </p>
         </div>
 
+        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label className="block text-white text-sm mb-2 font-medium">
-              ID
+              Personnel ID
             </label>
             <input
               type="text"
               placeholder="Enter your ID..."
               value={id}
               onChange={(e) => setId(e.target.value)}
-              className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-300"
+              className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-500 hover:to-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg transform transition-transform hover:scale-105"
+            className="w-full flex items-center justify-center gap-2 bg-green-700 hover:bg-green-800 text-white font-semibold py-3 rounded-lg shadow-lg transition"
           >
             <FaSignInAlt />
             Log In
