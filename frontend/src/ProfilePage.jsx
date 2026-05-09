@@ -33,36 +33,36 @@ function ProfilePage({ user, onContinue }) {
         <FaUserCircle className="text-6xl text-gray-300 mb-4" />
 
         {/* Info Section */}
-        <div className="w-full bg-white/10 rounded-xl p-5 space-y-4 border border-white/10">
+        <div className="w-full bg-white/20 rounded-xl p-5 space-y-4 border border-white/20">
           
-          <div className="flex items-center justify-between border-b border-white/10 pb-2">
+          <div className="flex items-center justify-between border-b border-white/20 pb-2">
             <div className="flex items-center gap-2">
-              <FaIdCard className="text-green-400" />
-              <span className="text-sm text-gray-300">ID</span>
+              <FaIdCard className="text-green-300" />
+              <span className="text-sm text-gray-200">ID</span>
             </div>
             <span className="font-semibold">{user}</span>
           </div>
 
-          <div className="flex items-center justify-between border-b border-white/10 pb-2">
+          <div className="flex items-center justify-between border-b border-white/20 pb-2">
             <div className="flex items-center gap-2">
-              <FaMapMarkerAlt className="text-green-400" />
-              <span className="text-sm text-gray-300">Unit</span>
+              <FaMapMarkerAlt className="text-green-300" />
+              <span className="text-sm text-gray-200">Unit</span>
             </div>
             <span className="font-semibold">Alpha Squad</span>
           </div>
 
-          <div className="flex items-center justify-between border-b border-white/10 pb-2">
+          <div className="flex items-center justify-between border-b border-white/20 pb-2">
             <div className="flex items-center gap-2">
-              <FaHeartbeat className="text-green-400" />
-              <span className="text-sm text-gray-300">Status</span>
+              <FaHeartbeat className="text-green-300" />
+              <span className="text-sm text-gray-200">Status</span>
             </div>
-            <span className="font-semibold text-green-400">Active Duty</span>
+            <span className="font-semibold text-green-300">Active Duty</span>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <FaUserCircle className="text-green-400" />
-              <span className="text-sm text-gray-300">Name</span>
+              <FaUserCircle className="text-green-300" />
+              <span className="text-sm text-gray-200">Name</span>
             </div>
             <span className="font-semibold">Pvt. John Doe</span>
           </div>
@@ -71,7 +71,7 @@ function ProfilePage({ user, onContinue }) {
         {/* Button */}
         <button
           onClick={onContinue}
-          className="mt-8 w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 rounded-lg shadow-lg transition"
+          className="mt-8 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg shadow-lg transition"
         >
           Continue to Dashboard
         </button>

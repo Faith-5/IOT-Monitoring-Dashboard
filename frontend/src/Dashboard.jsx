@@ -70,10 +70,10 @@ function Dashboard({ user }) {
       ];
 
   return (
-    <div className="min-h-screen bg-black text-white p-4 sm:p-6">
+    <div className="min-h-screen bg-gray-900 text-white p-4 sm:p-6">
 
       {/* NAVBAR */}
-      <header className="flex flex-col md:flex-row justify-between items-center bg-[#0a0f0a] border border-green-900 px-6 py-4 rounded-xl shadow-lg mb-8">
+      <header className="flex flex-col md:flex-row justify-between items-center bg-[#2a4a2a] border border-green-700 px-6 py-4 rounded-xl shadow-lg mb-8">
         
         <div className="flex items-center gap-3 mb-3 md:mb-0">
           <img src={logo} alt="Logo" className="w-10 h-10" />
@@ -89,8 +89,8 @@ function Dashboard({ user }) {
               onClick={() => setActiveTab("home")}
               className={`flex items-center gap-2 px-3 py-1 rounded ${
                 activeTab === "home"
-                  ? "bg-green-700"
-                  : "hover:bg-green-900"
+                  ? "bg-green-600"
+                  : "hover:bg-green-700"
               }`}
             >
               <FaHome />
@@ -101,8 +101,8 @@ function Dashboard({ user }) {
               onClick={() => setActiveTab("charts")}
               className={`flex items-center gap-2 px-3 py-1 rounded ${
                 activeTab === "charts"
-                  ? "bg-green-700"
-                  : "hover:bg-green-900"
+                  ? "bg-green-600"
+                  : "hover:bg-green-700"
               }`}
             >
               <FaChartLine />
@@ -113,8 +113,8 @@ function Dashboard({ user }) {
               onClick={() => setActiveTab("location")}
               className={`flex items-center gap-2 px-3 py-1 rounded ${
                 activeTab === "location"
-                  ? "bg-green-700"
-                  : "hover:bg-green-900"
+                  ? "bg-green-600"
+                  : "hover:bg-green-700"
               }`}
             >
               <FaMapMarkerAlt />
@@ -123,14 +123,14 @@ function Dashboard({ user }) {
 
           </nav>
 
-          <div className="bg-green-900 px-4 py-1 rounded text-sm">
+          <div className="bg-green-700 px-4 py-1 rounded text-sm">
             ID: {user}
           </div>
         </div>
       </header>
 
       {/* TIME */}
-      <p className="text-xs text-gray-400 text-center mb-6">
+      <p className="text-xs text-gray-300 text-center mb-6">
         Last Updated: {currentDate} {currentTime}
       </p>
 
@@ -140,10 +140,10 @@ function Dashboard({ user }) {
           {metrics.map((metric, index) => (
             <div
               key={index}
-              className="bg-[#0f1a0f] border border-green-900 rounded-lg p-4 text-center"
+              className="bg-[#1f3a1f] border border-green-700 rounded-lg p-4 text-center"
             >
-              <h2 className="text-sm text-gray-400">{metric.title}</h2>
-              <p className="text-lg font-bold text-green-400 mt-2">
+              <h2 className="text-sm text-gray-300">{metric.title}</h2>
+              <p className="text-lg font-bold text-green-300 mt-2">
                 {metric.value}
               </p>
             </div>
@@ -155,8 +155,8 @@ function Dashboard({ user }) {
       {activeTab === "charts" && (
         <div className="space-y-10">
 
-          <div className="bg-[#0f1a0f] border border-green-900 rounded-lg p-6">
-            <h2 className="text-xl font-bold text-green-400 mb-4 text-center">
+          <div className="bg-[#1f3a1f] border border-green-700 rounded-lg p-6">
+            <h2 className="text-xl font-bold text-green-300 mb-4 text-center">
               Temperature Trends
             </h2>
             <div className="h-[300px]">
@@ -164,8 +164,8 @@ function Dashboard({ user }) {
             </div>
           </div>
 
-          <div className="bg-[#0f1a0f] border border-green-900 rounded-lg p-6">
-            <h2 className="text-xl font-bold text-green-400 mb-4 text-center">
+          <div className="bg-[#1f3a1f] border border-green-700 rounded-lg p-6">
+            <h2 className="text-xl font-bold text-green-300 mb-4 text-center">
               Heartbeat Trends
             </h2>
             <div className="h-[300px]">
@@ -178,25 +178,25 @@ function Dashboard({ user }) {
 
       {/* LOCATION */}
       {activeTab === "location" && (
-        <div className="bg-[#0f1a0f] border border-green-900 rounded-lg p-6">
-          <h1 className="text-xl font-bold text-green-400 mb-6 text-center">
+        <div className="bg-[#1f3a1f] border border-green-700 rounded-lg p-6">
+          <h1 className="text-xl font-bold text-green-300 mb-6 text-center">
             Location Tracker
           </h1>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-            <div className="bg-black border border-green-900 p-4 text-center rounded">
-              <p className="text-gray-400 text-sm">Latitude</p>
-              <p className="text-green-400 font-bold">{lat}</p>
+            <div className="bg-gray-900 border border-green-700 p-4 text-center rounded">
+              <p className="text-gray-300 text-sm">Latitude</p>
+              <p className="text-green-300 font-bold">{lat}</p>
             </div>
 
-            <div className="bg-black border border-green-900 p-4 text-center rounded">
-              <p className="text-gray-400 text-sm">Longitude</p>
-              <p className="text-green-400 font-bold">{lng}</p>
+            <div className="bg-gray-900 border border-green-700 p-4 text-center rounded">
+              <p className="text-gray-300 text-sm">Longitude</p>
+              <p className="text-green-300 font-bold">{lng}</p>
             </div>
 
-            <div className="bg-black border border-green-900 p-4 text-center rounded">
-              <p className="text-gray-400 text-sm">Place</p>
-              <p className="text-green-400">{place}</p>
+            <div className="bg-gray-900 border border-green-700 p-4 text-center rounded">
+              <p className="text-gray-300 text-sm">Place</p>
+              <p className="text-green-300">{place}</p>
             </div>
           </div>
 

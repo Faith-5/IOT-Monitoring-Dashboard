@@ -10,8 +10,8 @@ export default function useSensorCharts() {
       {
         label: "Temperature (°C)",
         data: [],
-        borderColor: "teal",
-        backgroundColor: "lightblue",
+        borderColor: "#4ade80",
+        backgroundColor: "rgba(74, 222, 128, 0.1)",
       },
     ],
   });
@@ -22,8 +22,8 @@ export default function useSensorCharts() {
       {
         label: "Heartbeat (bpm)",
         data: [],
-        borderColor: "red",
-        backgroundColor: "pink",
+        borderColor: "#f87171",
+        backgroundColor: "rgba(248, 113, 113, 0.1)",
       },
     ],
   });

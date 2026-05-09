@@ -51,13 +51,13 @@ function LoginPage({ onLogin }) {
               placeholder="Enter your ID..."
               value={id}
               onChange={(e) => setId(e.target.value)}
-              className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full p-3 rounded-lg bg-white/30 border border-white/40 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-green-300"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 bg-green-700 hover:bg-green-800 text-white font-semibold py-3 rounded-lg shadow-lg transition"
+            className="w-full flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg shadow-lg transition"
           >
             <FaSignInAlt />
             Log In
