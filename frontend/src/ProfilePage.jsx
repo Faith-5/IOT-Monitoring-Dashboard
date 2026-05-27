@@ -64,7 +64,7 @@ function ProfilePage({ user, onContinue }) {
               <FaUserCircle className="text-green-300" />
               <span className="text-sm text-gray-200">Name</span>
             </div>
-            <span className="font-semibold">Pvt. John Doe</span>
+            <span className="font-semibold">Pvt. Sunday Owolabi</span>
           </div>
         </div>
 

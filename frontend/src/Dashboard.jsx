@@ -123,8 +123,13 @@ function Dashboard({ user }) {
 
           </nav>
 
-          <div className="bg-green-700 px-4 py-1 rounded text-sm">
-            ID: {user}
+          <div className="flex gap-3 items-center text-sm">
+            <div className="bg-green-700 px-3 py-1 rounded">
+              Device: {user}
+            </div>
+            <div className="bg-green-700 px-3 py-1 rounded">
+              Officer: NGRARMY99
+            </div>
           </div>
         </div>
       </header>
@@ -136,7 +141,7 @@ function Dashboard({ user }) {
 
       {/* HOME */}
       {activeTab === "home" && (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {metrics.map((metric, index) => (
             <div
               key={index}
@@ -159,7 +164,7 @@ function Dashboard({ user }) {
             <h2 className="text-xl font-bold text-green-300 mb-4 text-center">
               Heartbeat Trends
             </h2>
-            <div className="h-[300px]">
+            <div className="h-64 sm:h-72 md:h-[300px]">
               <Line data={heartbeatData} options={heartbeatOptions} />
             </div>
           </div>
@@ -168,7 +173,7 @@ function Dashboard({ user }) {
             <h2 className="text-xl font-bold text-green-300 mb-4 text-center">
               Blood Volume Pulse Trends
             </h2>
-            <div className="h-[300px]">
+            <div className="h-64 sm:h-72 md:h-[300px]">
               <Line data={bloodPulseData} options={bloodPulseOptions} />
             </div>
           </div>
@@ -177,7 +182,7 @@ function Dashboard({ user }) {
             <h2 className="text-xl font-bold text-green-300 mb-4 text-center">
               Temperature Trends
             </h2>
-            <div className="h-[300px]">
+            <div className="h-64 sm:h-72 md:h-[300px]">
               <Line data={tempData} options={tempOptions} />
             </div>
           </div>
@@ -209,7 +214,7 @@ function Dashboard({ user }) {
             </div>
           </div>
 
-          <div className="w-full h-[400px] rounded overflow-hidden">
+          <div className="w-full h-64 sm:h-80 md:h-[400px] rounded overflow-hidden">
             <MapContainer
               center={[lat, lng]}
               zoom={13}
