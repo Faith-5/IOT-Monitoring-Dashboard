@@ -44,7 +44,7 @@ ChartJS.register(
 function Dashboard({ user }) {
   const data = useSensorData();
   const { lat, lng, place } = useLiveLocation();
-  const { tempData, heartbeatData, tempOptions, heartbeatOptions } = useSensorCharts();
+  const { tempData, heartbeatData, bloodPulseData, tempOptions, heartbeatOptions, bloodPulseOptions } = useSensorCharts();
 
   const [activeTab, setActiveTab] = useState("home");
 
@@ -157,19 +157,28 @@ function Dashboard({ user }) {
 
           <div className="bg-[#1f3a1f] border border-green-700 rounded-lg p-6">
             <h2 className="text-xl font-bold text-green-300 mb-4 text-center">
-              Temperature Trends
+              Heartbeat Trends
             </h2>
             <div className="h-[300px]">
-              <Line data={tempData} options={tempOptions} />
+              <Line data={heartbeatData} options={heartbeatOptions} />
             </div>
           </div>
 
           <div className="bg-[#1f3a1f] border border-green-700 rounded-lg p-6">
             <h2 className="text-xl font-bold text-green-300 mb-4 text-center">
-              Heartbeat Trends
+              Blood Volume Pulse Trends
             </h2>
             <div className="h-[300px]">
-              <Line data={heartbeatData} options={heartbeatOptions} />
+              <Line data={bloodPulseData} options={bloodPulseOptions} />
+            </div>
+          </div>
+
+          <div className="bg-[#1f3a1f] border border-green-700 rounded-lg p-6">
+            <h2 className="text-xl font-bold text-green-300 mb-4 text-center">
+              Temperature Trends
+            </h2>
+            <div className="h-[300px]">
+              <Line data={tempData} options={tempOptions} />
             </div>
           </div>
 

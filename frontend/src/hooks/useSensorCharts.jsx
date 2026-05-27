@@ -28,6 +28,18 @@ export default function useSensorCharts() {
     ],
   });
 
+  const [bloodPulseData, setBloodPulseData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: "Blood Volume Pulse (%)",
+        data: [],
+        borderColor: "#60a5fa",
+        backgroundColor: "rgba(96, 165, 250, 0.1)",
+      },
+    ],
+  });
+
   useEffect(() => {
     const handleSensorUpdate = (packet) => {
       const time = new Date().toLocaleTimeString();
@@ -55,6 +67,20 @@ export default function useSensorCharts() {
             data: [
               ...prev.datasets[0].data,
               Number(packet.heartbeat),
+            ].slice(-10),
+          },
+        ],
+      }));
+
+      setBloodPulseData((prev) => ({
+        ...prev,
+        labels: [...prev.labels, time].slice(-10),
+        datasets: [
+          {
+            ...prev.datasets[0],
+            data: [
+              ...prev.datasets[0].data,
+              Number(packet.bloodVolumePulse),
             ].slice(-10),
           },
         ],
@@ -97,5 +123,19 @@ export default function useSensorCharts() {
     },
   }), []);
 
-  return { tempData, heartbeatData, tempOptions, heartbeatOptions };
+  const bloodPulseOptions = useMemo(() => ({
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: false,
+    scales: {
+      y: {
+        title: { display: true, text: "Blood Volume Pulse (%)" },
+      },
+      x: {
+        title: { display: true, text: "Time" },
+      },
+    },
+  }), []);
+
+  return { tempData, heartbeatData, bloodPulseData, tempOptions, heartbeatOptions, bloodPulseOptions };
 }
