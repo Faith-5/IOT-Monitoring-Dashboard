@@ -6,12 +6,26 @@ import logo from "./static/image3.jpg"; // military logo
 
 function LoginPage({ onLogin }) {
   const [id, setId] = useState("");
+  const [error, setError] = useState("");
+
+  const allowedIds = ["123", "B7241"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (id.trim()) {
-      onLogin(id);
+    const trimmedId = id.trim();
+
+    if (!trimmedId) {
+      setError("Please enter your Personnel ID.");
+      return;
     }
+
+    if (!allowedIds.includes(trimmedId)) {
+      setError("Access denied. Only qualified personnel can log in.");
+      return;
+    }
+
+    setError("");
+    onLogin(trimmedId);
   };
 
   return (
@@ -50,9 +64,15 @@ function LoginPage({ onLogin }) {
               type="text"
               placeholder="Enter your ID..."
               value={id}
-              onChange={(e) => setId(e.target.value)}
+              onChange={(e) => {
+                setId(e.target.value);
+                if (error) setError("");
+              }}
               className="w-full p-3 rounded-lg bg-white/30 border border-white/40 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-green-300"
             />
+            {error && (
+              <p className="mt-3 text-sm text-red-300">{error}</p>
+            )}
           </div>
 
           <button
