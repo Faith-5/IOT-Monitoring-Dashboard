@@ -8,7 +8,7 @@ function LoginPage({ onLogin }) {
   const [id, setId] = useState("");
   const [error, setError] = useState("");
 
-  const allowedIds = ["123", "B7241"];
+  const allowedIds = ["00:11:22"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
