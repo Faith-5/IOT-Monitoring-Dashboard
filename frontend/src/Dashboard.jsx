@@ -51,23 +51,23 @@ function Dashboard({ user }) {
   const currentDate = new Date().toLocaleDateString();
   const currentTime = new Date().toLocaleTimeString();
 
-  const metrics = data
-    ? [
-        { title: "GPS", value: `${data.gps}` },
-        { title: "Temp", value: `${data.temperature} °C` },
-        { title: "Heartbeat", value: `${data.heartbeat} bpm` },
-        { title: "Blood Pulse", value: `${data.bloodVolumePulse}%` },
-        { title: "Motion", value: `${data.motion}` },
-        { title: "Voice", value: `${data.voice}` },
-      ]
-    : [
-        { title: "GPS", value: "…" },
-        { title: "Temp", value: "…" },
-        { title: "Heartbeat", value: "…" },
-        { title: "Blood Pulse", value: "…" },
-        { title: "Motion", value: "…" },
-        { title: "Voice", value: "…" },
-      ];
+  const metrics = [
+    { title: "GPS", value: `${lat}, ${lng}` },
+    {
+      title: "Temp",
+      value: data?.temperature == null ? "…" : `${data.temperature} °C`,
+    },
+    {
+      title: "Heartbeat",
+      value: data?.heartbeat == null ? "…" : `${data.heartbeat} bpm`,
+    },
+    {
+      title: "Blood Pulse",
+      value: data?.bloodVolumePulse == null ? "…" : `${data.bloodVolumePulse}%`,
+    },
+    { title: "Motion", value: data?.motion ?? "…" },
+    { title: "Voice", value: data?.voice ?? "…" },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4 sm:p-6">

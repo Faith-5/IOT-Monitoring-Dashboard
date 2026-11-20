@@ -5,9 +5,9 @@ const socket = io(import.meta.env.VITE_API_URL);
 
 export function useLiveLocation() {
   const [location, setLocation] = useState({
-    lat: 0,
-    lng: 0,
-    place: "Fetching...",
+    lat: 7.2373,
+    lng: 5.2148,
+    place: "Fetching location...",
   });
 
   useEffect(() => {

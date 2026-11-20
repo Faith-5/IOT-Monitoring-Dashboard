@@ -3,22 +3,22 @@ const http = require("http");
 const socketIo = require("socket.io");
 const cors = require("cors");
 
-app = express();
+const FIXED_GPS = "7.2373, 5.2148";
+const app = express();
 app.use(cors());
-server = http.createServer(app);
+const server = http.createServer(app);
 const io = socketIo(server, {
   cors: { origin: "*" },
 });
 
 app.use(express.json());
 
-let latestData = {};
+let latestData = { gps: FIXED_GPS };
 app.post("/api/sensors", (req, res) => {
-  const { gps, temperature, heartbeat, bloodVolumePulse, motion, voice } =
-    req.body;
+  const { temperature, heartbeat, bloodVolumePulse, motion, voice } = req.body;
 
   latestData = {
-    gps,
+    gps: FIXED_GPS,
     temperature,
     heartbeat,
     bloodVolumePulse,
